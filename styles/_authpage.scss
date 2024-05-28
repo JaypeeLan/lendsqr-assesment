@@ -1,0 +1,70 @@
+.auth-page {
+  height: 100vh;
+  width: 100%;
+  @include display-grid($columns: 2, $gap: 0rem);
+
+  > div {
+    height: 100%;
+    // left side
+    &:first-child {
+      background: $grey;
+      padding-top: 106px;
+      padding-left: 97px;
+    }
+
+    // right side
+
+    &:last-child {
+      background-color: $white;
+      display: flex;
+      align-items: center;
+      padding: 0 15%;
+
+      > div {
+        width: 100%;
+        // welcome tex
+        h1 {
+          color: $secondary-color;
+          margin-bottom: 1rem;
+          line-height: 54.64px;
+          letter-spacing: -0.4px;
+        }
+
+        form {
+          margin-top: 60px;
+          @include display-flex($align: flex-start, $direction: column);
+          gap: 24px;
+          max-width: 447px;
+
+          //   forgot password link
+          span {
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: $teal-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.logo {
+  display: block;
+  width: 173.76px;
+  height: 36px;
+}
+.auth-logo {
+  margin-bottom: 139px;
+}
+
+// show icon for the password field
+.password-icon {
+  font-size: 12px;
+  font-weight: 600;
+  color: $teal-color;
+  text-transform: uppercase;
+  margin-right: 15px;
+  cursor: pointer;
+}

@@ -8,12 +8,12 @@
   }
 }
 
-// @mixin center {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// }
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 // @mixin placeholder($lineHeight: 1rem) {
 //   &::-webkit-input-placeholder {
@@ -76,14 +76,14 @@
   align-items: $align;
 }
 
-// @mixin display-grid($columns, $gap: 1rem) {
-//   display: grid;
-//   grid-template-columns: repeat($columns, 1fr);
-//   grid-gap: $gap;
-//   & > * {
-//     min-width: 100%;
-//   }
-// }
+@mixin display-grid($columns, $gap: 1rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-gap: $gap;
+  & > * {
+    min-width: 100%;
+  }
+}
 
 // @mixin shadow($type: one) {
 //   background: $light;

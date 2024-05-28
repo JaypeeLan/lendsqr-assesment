@@ -1,13 +1,13 @@
-// h1,
-// .h1 {
-//   font-weight: 400;
-//   font-size: 56px;
-//   // line-height: 73px;
-//   // letter-spacing: -0.022px;
-//   @include respond(tab-port) {
-//     font-size: 48px;
-//   }
-// }
+h1,
+.h1 {
+  font-weight: 700;
+  font-size: 40px;
+  // line-height: 73px;
+  // letter-spacing: -0.022px;
+  @include respond(tab-port) {
+    font-size: 30px;
+  }
+}
 // h2,
 // .h2 {
 //   font-weight: 400;
