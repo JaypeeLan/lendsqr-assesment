@@ -28,7 +28,12 @@ export default function Auth() {
               rightIcon={<p className="password-icon">show</p>}
             />
             <span>forgot password?</span>
-            <CustomButton type="submit" size="xs" className="full-btn">
+            <CustomButton
+              type="button"
+              size="xs"
+              className="full-btn"
+              to="/dashboard"
+            >
               LOG IN
             </CustomButton>
           </form>
