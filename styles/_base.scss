@@ -1,0 +1,102 @@
+*,
+*::before,
+*::after,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 100%;
+  font-weight: normal;
+  vertical-align: baseline;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: $primary-font !important;
+  // background-color: $light;
+  font-size: 62.5%;
+  @include respond(tab-land) {
+    font-size: 56.25%;
+  }
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+  @include respond(big-desktop) {
+    font-size: 75%;
+  }
+}
+
+body {
+  font-family: $primary-font !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $primary-color;
+  line-height: 1.3;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+i {
+  font-style: normal;
+}
+
+ul {
+  li {
+    list-style: disc;
+    padding: 0;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+// a {
+//   text-decoration: none;
+//   color: inherit;
+//   cursor: pointer;
+//   &:active,
+//   &:hover,
+//   &:focus,
+//   &.active,
+//   &.hover,
+//   &.focus {
+//     @extend a;
+//   }
+// }
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  position: relative;
+
+  &:disabled {
+    pointer-events: none;
+  }
+}
+
+input {
+  font-family: inherit;
+
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}

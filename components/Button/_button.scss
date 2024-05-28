@@ -1,0 +1,135 @@
+.button {
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 8px;
+
+  white-space: nowrap;
+  transition: all ease-in-out 0.3s;
+  overflow: hidden;
+  @include display-flex(center, center);
+  &.full-btn {
+    width: 100%;
+  }
+  &-text {
+    font-weight: 600;
+    @include display-flex(flex-start, center);
+    svg {
+      margin-left: 10px;
+    }
+  }
+
+  .loader {
+    position: absolute;
+    opacity: 0;
+    transition: all ease-in-out 0.3s;
+  }
+
+  &.loading {
+    pointer-events: none;
+
+    * {
+      transition: all ease-in-out 0.3s;
+      opacity: 0;
+    }
+
+    .loader {
+      opacity: 1;
+    }
+  }
+
+  &:active,
+  &.active {
+    transform: translateY(-0.1rem);
+    box-shadow: none;
+    outline: 0;
+  }
+
+  &.sm-button {
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -0.01px;
+    height: 32px;
+    // padding: 18px 25px;
+  }
+  &.md-button {
+    font-size: 14px;
+    line-height: 16.42px;
+    // letter-spacing: -0.01px;
+    height: 40px;
+    // padding: 15px 20px;
+  }
+  @include respond(tab-port) {
+    font-size: 14px;
+    line-height: 16.42px;
+    letter-spacing: -0.01px;
+    height: 32px;
+    // padding: 18px 25px;
+  }
+  &.xs-button {
+    height: 48px;
+    font-size: 14px;
+    line-height: 19.12px;
+    letter-spacing: 0.1em;
+    // padding: 0 8px;
+  }
+
+  &:disabled,
+  &.disabled {
+    pointer-events: none;
+    box-shadow: none;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &.active,
+    &.hover,
+    &.focus {
+      box-shadow: none;
+    }
+  }
+}
+
+.primary-button {
+  background: $teal-color;
+  color: $white;
+  border: none;
+
+  &:disabled,
+  &.disabled {
+    background: $light-grey;
+    color: $dark-grey;
+  }
+}
+
+.secondary-button {
+  background: $white;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  border-radius: 8px;
+
+  &:disabled,
+  &.disabled {
+    border-color: $light-grey;
+    color: $dark-grey;
+  }
+}
+
+.icon-button {
+  div {
+    @include display-flex(flex-start, flex-start);
+
+    &:first-of-type {
+      margin-right: 8px;
+    }
+  }
+
+  .button-icon {
+    width: 16px;
+  }
+
+  &.sm-button {
+    .button-icon {
+      width: 11px;
+    }
+  }
+}

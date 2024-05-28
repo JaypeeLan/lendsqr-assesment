@@ -1,0 +1,20 @@
+.loader {
+  border: 3px solid transparent;
+  border-radius: 50%;
+  border-top: 2px solid $light;
+  border-right: 2px solid $light;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  pointer-events: none;
+
+  &-primary {
+    border-top: 2px solid $primary-color;
+    border-right: 2px solid $primary-color;
+  }
+  &-grey {
+    border-top: 2px solid $dark-grey;
+    border-right: 2px solid $dark-grey;
+  }
+}

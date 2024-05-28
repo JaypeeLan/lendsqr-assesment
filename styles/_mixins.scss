@@ -1,0 +1,136 @@
+@mixin font-face($family, $weight, $fileName, $style: normal) {
+  @font-face {
+    font-family: $family;
+    font-style: $style;
+    font-weight: $weight;
+    src: local($family), url("/fonts/#{$fileName}.otf");
+    font-display: swap;
+  }
+}
+
+// @mixin center {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+// @mixin placeholder($lineHeight: 1rem) {
+//   &::-webkit-input-placeholder {
+//     @content;
+//   }
+//   &:-ms-input-placeholder {
+//     @content;
+//   }
+//   &::-moz-placeholder {
+//     @content;
+//     line-height: $lineHeight;
+//   }
+//   &:-moz-placeholder {
+//     @content;
+//     line-height: $lineHeight;
+//   }
+// }
+
+// @mixin image-full-fit($fit: cover, $position: top) {
+//   width: 100%;
+//   height: 100%;
+//   object-fit: $fit;
+//   object-position: $position;
+// }
+
+// @mixin ellipsis {
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+// @mixin full-absolute {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+// }
+
+// @mixin full-fixed {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+// }
+
+// @mixin full-circle($size) {
+//   width: $size;
+//   min-width: $size;
+//   flex: 0 0 $size;
+//   height: $size;
+//   border-radius: 50%;
+// }
+
+@mixin display-flex($justify: space-between, $align: center, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// @mixin display-grid($columns, $gap: 1rem) {
+//   display: grid;
+//   grid-template-columns: repeat($columns, 1fr);
+//   grid-gap: $gap;
+//   & > * {
+//     min-width: 100%;
+//   }
+// }
+
+// @mixin shadow($type: one) {
+//   background: $light;
+//   border: 1px solid $light-grey;
+//   box-sizing: border-box;
+//   border-radius: 8px;
+
+//   @if $type == one {
+//     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+//   }
+//   @if $type == two {
+//     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+//   }
+//   @if $type == three {
+//     box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15);
+//   }
+// }
+
+// @mixin hide-scrollbar {
+//   -ms-overflow-style: none;
+//   scrollbar-width: none;
+
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
+
+// @mixin horizontalGridScroll(
+//   $overflow-y: scroll,
+//   $gap: 24px,
+//   $column-width: 260px
+// ) {
+//   display: grid;
+//   grid-auto-columns: $column-width;
+//   grid-template-columns: 266px;
+//   grid-auto-flow: column;
+//   align-items: baseline;
+//   overflow-y: $overflow-y;
+//   gap: $gap;
+// }
+
+// @mixin loader-styles($border-color, $width, $height) {
+//   border: 1px solid $border-color;
+//   border-radius: 50%;
+//   border-right-color: transparent;
+//   border-bottom-color: transparent;
+//   width: $width;
+//   height: $height;
+//   animation: loading 700ms infinite linear;
+// }
