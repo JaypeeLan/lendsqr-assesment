@@ -6,12 +6,12 @@ import { MouseEvent, ReactNode } from "react";
 interface ButtonProps {
   className?: string;
   variant?: "primary" | "secondary";
-
   size?: "sm" | "md" | "xs";
   disabled?: boolean;
   children: ReactNode;
   loading?: boolean;
   to?: string;
+  type: "submit" | "reset" | "button" | undefined;
   onClick?: (event: MouseEvent<HTMLElement>) => void;
 }
 
@@ -21,6 +21,7 @@ const Button = ({
   children,
   onClick,
   to,
+  type,
   variant = "primary",
   size,
   ...props
@@ -35,6 +36,7 @@ const Button = ({
           loading,
         }
       )}
+      type={type}
       onClick={(e) => {
         if (to) {
           router.push(to);

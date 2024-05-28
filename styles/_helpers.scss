@@ -1,30 +1,30 @@
-// .show-on-desktop {
-//   display: block;
-//   @include respond(tab-port) {
-//     display: none;
-//   }
-// }
-// .show-on-large {
-//   display: block;
-//   @include respond(tab-land) {
-//     display: none;
-//   }
-// }
-// .show-on-med {
-//   display: none;
-//   @include respond(tab-port) {
-//     display: block;
-//   }
-// }
+.show-on-desktop {
+  display: block;
+  @include respond(tab-port) {
+    display: none;
+  }
+}
+.show-on-large {
+  display: block;
+  @include respond(tab-land) {
+    display: none;
+  }
+}
+.show-on-med {
+  display: none;
+  @include respond(tab-port) {
+    display: block;
+  }
+}
 
-// .hide {
-//   display: none;
-// }
+.hide {
+  display: none;
+}
 
-// .cursor {
-//   cursor: pointer;
-// }
+.cursor {
+  cursor: pointer;
+}
 
-// .full-width {
-//   width: 100%;
-// }
+.full-width {
+  width: 100%;
+}
