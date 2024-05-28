@@ -8,6 +8,7 @@ interface InputProps {
   placeholder?: string;
   variant?: "normal" | "icon";
   rightIcon?: any;
+  iconProps?: string;
   label?: string;
   onClick?: (event: React.MouseEvent) => void;
 }
@@ -19,6 +20,7 @@ const Input = ({
   placeholder,
   rightIcon,
   onClick,
+  iconProps,
   variant = "normal",
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -42,7 +44,10 @@ const Input = ({
         placeholder={placeholder}
       />
       {rightIcon && (
-        <div className={classNames(`input-img`)} onClick={handleIconClick}>
+        <div
+          className={classNames(`input-img ${iconProps}`)}
+          onClick={handleIconClick}
+        >
           {rightIcon}
         </div>
       )}

@@ -18,8 +18,11 @@
 
   &-img {
     height: 100%;
+    width: 56px;
     display: grid;
     place-items: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
 }
 
