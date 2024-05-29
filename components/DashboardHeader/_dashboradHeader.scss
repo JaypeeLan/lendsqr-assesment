@@ -1,0 +1,47 @@
+// layout - header
+
+.dashboard-header {
+  height: 100px;
+  background-color: $white;
+  padding-left: 30px;
+  padding-right: 60px;
+  display: flex;
+  align-items: center;
+
+  > div {
+    display: flex;
+    margin-left: auto;
+
+    > a {
+      text-decoration: underline;
+    }
+
+    // notification icon
+    > img:nth-of-type(1) {
+      margin-left: 47px;
+    }
+
+    // avatar
+    > img:nth-of-type(2) {
+      margin-left: 30px;
+    }
+
+    > span {
+      margin-left: 10px;
+      margin-right: 4px;
+      color: $secondary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+.search-input {
+  max-width: 400px;
+  margin-left: 16.8rem;
+}
+
+.search-icon {
+  background-color: $teal-color;
+  //   width: 20px;
+  //   height: 20px;
+}
