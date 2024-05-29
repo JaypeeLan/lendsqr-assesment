@@ -1,0 +1,11 @@
+.dashboard-content {
+  padding-top: 100px;
+  display: flex;
+}
+
+.dashboard-children {
+  background-color: whitesmoke;
+  min-height: calc(100vh - 100px);
+  width: 100%;
+  padding: 60px 60px 20px 60px;
+}

@@ -2,6 +2,7 @@
   @include display-flex($justify: flex-start);
   margin-bottom: 31px;
   padding-left: 3rem;
+
   height: 40px;
   // the left icon
   > img:first-child {
@@ -17,8 +18,7 @@
 }
 
 .sidebar {
-  max-width: 283px;
-  padding-top: 100px;
+  min-width: 283px;
 
   &-title {
     text-transform: uppercase;
@@ -35,5 +35,7 @@
   opacity: 1 !important;
 }
 
-.selected-link {
+.selectedLink {
+  background-color: $light-teal;
+  border-left: 3px solid $teal-color;
 }
