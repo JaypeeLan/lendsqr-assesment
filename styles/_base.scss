@@ -61,23 +61,18 @@ img {
   max-width: 100%;
 }
 
-// a {
-//   text-decoration: none;
-//   color: inherit;
-//   cursor: pointer;
-//   &:active,
-//   &:hover,
-//   &:focus,
-//   &.active,
-//   &.hover,
-//   &.focus {
-//     @extend a;
-//   }
-// }
-
-img {
-  width: 100%;
-  height: auto;
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  &:active,
+  &:hover,
+  &:focus,
+  &.active,
+  &.hover,
+  &.focus {
+    @extend a;
+  }
 }
 
 button {

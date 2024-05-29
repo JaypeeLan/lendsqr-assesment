@@ -36,10 +36,10 @@ const Input = ({
   };
 
   return (
-    <div className={classNames(`inputBox ${variant}-input`)}>
+    <div className={classNames(`inputBox ${variant}-input`, className)}>
       {label && <span className="inputBox-label">{label}</span>}
       <input
-        className={classNames(`input`, className)}
+        className={classNames(`input`)}
         type={inputType}
         placeholder={placeholder}
       />

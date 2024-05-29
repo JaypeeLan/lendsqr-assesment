@@ -1,15 +1,15 @@
-// .link {
-//   &:active,
-//   &:visited,
-//   &:link {
-//     text-decoration: underline;
-//     color: $dark-grey;
-//     transition: all 0.2s;
-//   }
-//   &:hover {
-//     color: $primary;
-//   }
-//   &.primary {
-//     color: $critical;
-//   }
-// }
+.link {
+  &:active,
+  &:visited,
+  &:link {
+    text-decoration: underline;
+    color: $dark-grey;
+    transition: all 0.2s;
+  }
+  &:hover {
+    color: $teal-color;
+  }
+  &.primary {
+    color: $primary-color;
+  }
+}
