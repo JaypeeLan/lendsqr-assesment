@@ -60,4 +60,25 @@
 
 .actionIcon-popup {
   top: 0%;
+  width: 180px;
+}
+
+.filter-popup {
+  width: 270px;
+}
+
+// -----
+.options-popup {
+  button {
+    margin-bottom: 2rem;
+    display: flex;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    img {
+      margin-right: 0.8rem;
+    }
+  }
 }
