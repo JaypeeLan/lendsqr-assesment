@@ -1,7 +1,8 @@
 "use client";
 import { Table } from "@/components";
-import { Data } from "@/components/Table/Table";
+
 import useFetchData from "@/hooks/useFetch";
+import { Data } from "@/types/data";
 import Image from "next/image";
 import { useEffect } from "react";
 
@@ -30,12 +31,12 @@ const USERSINFO = [
 
 const User = () => {
   const tableHeaders = [
-    { label: "organization", icon: "👤" },
-    { label: "Username", icon: "👤" },
-    { label: "email", icon: "👤" },
-    { label: "Phone number", icon: "" },
-    { label: "Date joined", icon: "🎂" },
-    { label: "Status", icon: "🎂" },
+    { label: "organization", icon: "filter" },
+    { label: "Username", icon: "filter" },
+    { label: "email", icon: "filter" },
+    { label: "Phone number", icon: "filter" },
+    { label: "Date joined", icon: "filter" },
+    { label: "Status", icon: "filter" },
   ];
 
   const { data, isLoading, isError } = useFetchData(
@@ -63,6 +64,7 @@ const User = () => {
 
   const handleActionClick = (item: Data) => {
     // You may need to cast `item` to `Data` if you need to access other properties
+
     console.log(`Action clicked for item with ID ${item._id}`);
   };
 

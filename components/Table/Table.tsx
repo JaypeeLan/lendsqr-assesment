@@ -1,50 +1,8 @@
-// Table.tsx
-
-interface PersonalInformation {
-  full_name: string;
-  phone_number: string;
-  email_address: string;
-  bnv: string;
-  gender: string;
-  marital_status: string;
-  children: string;
-  type_of_residence: string;
-  Date_joined: string;
-  Username: string;
-  Organization: string;
-  Status: string;
-}
-
-interface EducationAndEmployment {
-  level_of_education: string;
-  employment_status: string;
-  sector_of_employment: string;
-  Duration_of_employment: string;
-  office_email: string;
-  Monthly_income: string;
-  loan_repayment: string;
-}
-
-interface Socials {
-  Twitter: string;
-  Facebook: string;
-  Instagram: string;
-}
-
-interface Guarantor {
-  full_name: string;
-  Phone_number: string;
-  email_address: string;
-  relationship: string;
-}
-
-export interface Data {
-  _id: string;
-  Personal_information: PersonalInformation;
-  Education_and_Employment: EducationAndEmployment;
-  Socials: Socials;
-  Guarantor: Guarantor[];
-}
+"use client";
+import { Data } from "@/types/data";
+import Link from "next/link";
+import { useState } from "react";
+import { Popup } from "..";
 
 interface TableProps {
   data: Data[];
@@ -55,8 +13,12 @@ interface TableProps {
   onIconClick: (headerLabel: string) => void;
   onActionClick: (item: Data) => void;
 }
-
 const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
+  const [visiblePopupRow, setVisiblePopupRow] = useState<string | null>(null);
+  const [visibleFilterHeader, setVisibleFilterHeader] = useState<string | null>(
+    null
+  );
+
   const getHeaderValue = (item: Data, headerLabel: string) => {
     const propertyName = headerLabel.replace(/\s+/g, "_").toLowerCase();
 
@@ -74,6 +36,11 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
     const normalizedGuarantor = normalizeObject(item.Guarantor[0]);
 
     const searchNormalizedObject = (obj: Record<string, any>, key: string) => {
+      // First check for exact match
+      if (obj.hasOwnProperty(key)) {
+        return obj[key];
+      }
+      // If no exact match found, check for partial matches
       const foundKey = Object.keys(obj).find((k) => k.includes(key));
       return foundKey ? obj[foundKey] : "";
     };
@@ -87,20 +54,46 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
     );
   };
 
+  const showActionMenu = (item: Data) => {
+    setVisiblePopupRow(item._id);
+    onActionClick(item);
+  };
+
+  const showFilterPopup = (headerLabel: string) => {
+    setVisibleFilterHeader(headerLabel);
+    onIconClick(headerLabel);
+  };
+
   return (
     <table className="custom-table">
       <thead>
         <tr>
           {headers.map((header, index) => (
-            <th key={index}>
+            <th key={index} className="action-btn">
               {header.label}
               {header.icon && (
                 <span
                   className="header-icon"
-                  onClick={() => onIconClick(header.label)}
+                  onClick={() => showFilterPopup(header.label)}
                 >
                   <img src="/icons/filter.svg" alt="filter" />
                 </span>
+              )}
+              {visibleFilterHeader === header.label && (
+                <Popup
+                  className="filter-popup"
+                  closeOnClickOutside={true}
+                  isVisible={true}
+                  setIsVisible={setVisibleFilterHeader}
+                >
+                  <div className="popup-content">
+                    <h2>Filter Options</h2>
+                    <p>Options for filtering {header.label}</p>
+                    <button onClick={() => setVisibleFilterHeader(null)}>
+                      Close
+                    </button>
+                  </div>
+                </Popup>
               )}
             </th>
           ))}
@@ -112,10 +105,30 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
             {headers.map((header, index) => (
               <td key={index}>{getHeaderValue(item, header.label)}</td>
             ))}
-            <td>
-              <button onClick={() => onActionClick(item)}>
+            <td className="action-btn">
+              <button onClick={() => showActionMenu(item)}>
                 <img src="/icons/options.svg" alt="options" />
               </button>
+              {visiblePopupRow === item._id && (
+                <Popup
+                  className="actionIcon-popup"
+                  closeOnClickOutside={true}
+                  isVisible={true}
+                  setIsVisible={setVisiblePopupRow}
+                >
+                  <div className="popup-content">
+                    <Link href={`/dashboard/users/${item._id}`}>
+                      {" "}
+                      View details{" "}
+                    </Link>
+                    <h2>Hello, I'm a Popup!</h2>
+                    <p>This is some content inside the popup.</p>
+                    <button onClick={() => setVisiblePopupRow(null)}>
+                      Close
+                    </button>
+                  </div>
+                </Popup>
+              )}
             </td>
           </tr>
         ))}
