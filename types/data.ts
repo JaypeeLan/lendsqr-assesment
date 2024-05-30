@@ -10,7 +10,7 @@ interface PersonalInformation {
   Date_joined: string;
   Username: string;
   Organization: string;
-  Status: string;
+  Status: "active" | " inactive" | "pending" | "blacklisted";
 }
 
 interface EducationAndEmployment {

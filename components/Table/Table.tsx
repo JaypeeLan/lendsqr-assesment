@@ -70,77 +70,84 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
   };
 
   return (
-    <table className="custom-table">
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index} className="action-btn">
-              {header.label}
-              {header.icon && (
-                <span
-                  className="header-icon"
-                  onClick={() => showFilterPopup(header.label)}
-                >
-                  <img src="/icons/filter.svg" alt="filter" />
-                </span>
-              )}
-              {visibleFilterHeader === header.label && (
-                <Popup
-                  className="filter-popup"
-                  closeOnClickOutside={true}
-                  isVisible={true}
-                  setIsVisible={setVisibleFilterHeader}
-                >
-                  <div className="popup-content">
-                    <h2>Filter Options</h2>
-                    <p>Options for filtering {header.label}</p>
-                    <button onClick={() => setVisibleFilterHeader(null)}>
-                      Close
-                    </button>
-                  </div>
-                </Popup>
-              )}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={item._id}>
+    <div className="table-container">
+      <table className="custom-table">
+        <thead>
+          <tr>
             {headers.map((header, index) => (
-              <td key={index}>{getHeaderValue(item, header.label)}</td>
+              <th key={index} className=" action-btn">
+                <div className="custom-table__header">
+                  <p> {header.label}</p>
+
+                  {header.icon && (
+                    <img
+                      className="action-btn__icon"
+                      onClick={() => showFilterPopup(header.label)}
+                      src="/icons/filter.svg"
+                      alt="filter"
+                      width={16}
+                      height={35}
+                    />
+                  )}
+                </div>
+                {visibleFilterHeader === header.label && (
+                  <Popup
+                    className="filter-popup"
+                    closeOnClickOutside={true}
+                    isVisible={true}
+                    setIsVisible={setVisibleFilterHeader}
+                  >
+                    <div className="popup-content">
+                      <h2>Filter Options</h2>
+                      <p>Options for filtering {header.label}</p>
+                      <button onClick={() => setVisibleFilterHeader(null)}>
+                        Close
+                      </button>
+                    </div>
+                  </Popup>
+                )}
+              </th>
             ))}
-            <td className="action-btn">
-              <button onClick={() => showActionMenu(item)}>
-                <img src="/icons/options.svg" alt="options" />
-              </button>
-              {visiblePopupRow === item._id && (
-                <Popup
-                  className="actionIcon-popup"
-                  closeOnClickOutside={true}
-                  isVisible={true}
-                  setIsVisible={setVisiblePopupRow}
-                >
-                  <div className="popup-content">
-                    <Link
-                      href={`/dashboard/users/${item._id}`}
-                      onClick={() => handleViewDetails(item)}
-                    >
-                      View details
-                    </Link>
-                    <h2>Hello, I'm a Popup!</h2>
-                    <p>This is some content inside the popup.</p>
-                    <button onClick={() => setVisiblePopupRow(null)}>
-                      Close
-                    </button>
-                  </div>
-                </Popup>
-              )}
-            </td>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {data.map((item) => (
+            <tr key={item._id}>
+              {headers.map((header, index) => (
+                <td key={index}>{getHeaderValue(item, header.label)}</td>
+              ))}
+              <td className="action-btn">
+                <button onClick={() => showActionMenu(item)}>
+                  <img src="/icons/options.svg" alt="options" />
+                </button>
+                {visiblePopupRow === item._id && (
+                  <Popup
+                    className="actionIcon-popup"
+                    closeOnClickOutside={true}
+                    isVisible={true}
+                    setIsVisible={setVisiblePopupRow}
+                  >
+                    <div className="popup-content">
+                      <Link
+                        href={`/dashboard/users/${item._id}`}
+                        onClick={() => handleViewDetails(item)}
+                      >
+                        View details
+                      </Link>
+                      <h2>Hello, I'm a Popup!</h2>
+                      <p>This is some content inside the popup.</p>
+                      <button onClick={() => setVisiblePopupRow(null)}>
+                        Close
+                      </button>
+                    </div>
+                  </Popup>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

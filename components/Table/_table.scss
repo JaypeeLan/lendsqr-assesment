@@ -1,9 +1,14 @@
-// Table.scss
+.table-container {
+  background: $white;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 3rem;
+}
+
 .custom-table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #ddd;
-  background: $white;
 
   th,
   td {
@@ -12,17 +17,37 @@
   }
 
   th {
-    // background-color: #f5f5f5;
-    font-weight: bold;
+    font-size: 1.2rem;
+    color: $secondary-color;
+    text-transform: uppercase;
+    line-height: 14.08px;
+
+    p {
+      font-weight: 600;
+    }
   }
 
-  tr:nth-child(even) {
-    // background-color: #f9f9f9;
+  td {
+    font-size: 1.4rem;
+    line-height: 16.42px;
+    border-bottom: 1px solid $light-grey;
+    padding-bottom: 16px;
+    margin-bottom: 10px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 }
 
 .action-btn {
   position: relative;
+
+  &__icon {
+    cursor: pointer;
+  }
 }
 
 .filter-popup,
