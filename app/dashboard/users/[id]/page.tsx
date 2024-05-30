@@ -1,7 +1,10 @@
 "use client";
 import { CustomButton } from "@/components";
 import { Data } from "@/types/data";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
+import { GeneralTab } from "./tabs";
 
 type ParamsProp = {
   params: {
@@ -10,6 +13,15 @@ type ParamsProp = {
 };
 
 const SingleUser = ({ params }: ParamsProp) => {
+  const tabs = [
+    "General Details",
+    "Documents",
+    "Bank Details",
+    "Loans",
+    "Savings",
+    "App and System",
+  ];
+  const [activeTab, setActiveTab] = useState(0);
   const [user, setUser] = useState<Data | null>(null);
 
   useEffect(() => {
@@ -27,33 +39,99 @@ const SingleUser = ({ params }: ParamsProp) => {
   }
 
   return (
-    <div className="details">
-      <div className="">
-        <img src="/icons/back-arrow.svg" alt="back" />
-        <span>Back to users</span>
-      </div>
-      {/* ---- */}
-      <div>
-        <h2 className="usersPage-title">User Details</h2>
+    <>
+      <div className="userDetails">
+        <Link href={"/dashboard/users"} className="userDetails-backBtn">
+          <img src="/icons/back-arrow.svg" alt="back" />
+          <span>Back to users</span>
+        </Link>
+        {/* ---- */}
+        <div className="userDetails-action">
+          <h2 className="userDetails-title">User Details</h2>
 
-        <div className="actionBtns">
-          <CustomButton type="button">Blacklist user</CustomButton>
-          <CustomButton type="button">Activate user</CustomButton>
+          <div className="userDetails-action__btns">
+            <CustomButton type="button" size="md">
+              Blacklist user
+            </CustomButton>
+            <CustomButton type="button" size="md">
+              Activate user
+            </CustomButton>
+          </div>
         </div>
+        {/* ---- */}
+
+        <div className="userDetails-profile">
+          <div>
+            {/* photo and id */}
+            <div>
+              <Image
+                src="/imgs/profile-photo.png"
+                alt="profile photo"
+                width={100}
+                height={100}
+              />
+              <div>
+                <p className="userDetails-title">
+                  {user.Personal_information.full_name}
+                </p>
+                <span> LSQFf587g90</span>
+              </div>
+            </div>
+            {/* user tier */}
+            <div>
+              <p>User's tier</p>
+              <div>
+                <img
+                  src="/icons/filled-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+                <img
+                  src="/icons/empty-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+                <img
+                  src="/icons/empty-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+              </div>
+            </div>
+
+            {/* user acct details */}
+            <div>
+              <p className="userDetails-title">₦200,000.00</p>
+              <p>9912345678/Providus Bank</p>
+            </div>
+          </div>
+
+          {/*  */}
+
+          <div className="userDetails-tabs">
+            {tabs.map((tab, index) => (
+              <div
+                key={index}
+                className={`tab ${index === activeTab ? "active" : ""}`}
+                onClick={() => setActiveTab(index)}
+              >
+                {tab}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* end user profile */}
       </div>
-      {/* ---- */}
-      {/* 
-      <div>
-        <p>{user.Personal_information.full_name}</p>
-        <p>{user.Personal_information.phone_number}</p>
-        <p>{user.Personal_information.email_address}</p>
-        <p>{user.Personal_information.bnv}</p>
-        <p>{user.Personal_information.gender}</p>
-        <p>{user.Personal_information.marital_status}</p>
-        <p>{user.Personal_information.children}</p>
-        <p>{user.Personal_information.type_of_residence}</p>
-      </div> */}
-    </div>
+
+      {/* user tabs */}
+      <div className="userDetails-info">
+        {activeTab == 0 && <GeneralTab data={user} />}
+      </div>
+    </>
   );
 };
 
