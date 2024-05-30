@@ -70,7 +70,7 @@ const User = () => {
 
   return (
     <div className="usersPage">
-      <h2>Users</h2>
+      <h2 className="usersPage-title">Users</h2>
       <div className="usersPage-info">
         {USERSINFO.map((info) => (
           <div className="usersPage-info__card" key={info.data}>

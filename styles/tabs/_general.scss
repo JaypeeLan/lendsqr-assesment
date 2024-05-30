@@ -1,0 +1,33 @@
+.display-card {
+  > p {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  > span {
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 18.77px;
+  }
+}
+
+.general {
+  &-personal {
+    border-bottom: 1px solid $light-grey;
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+
+    &__title {
+      color: $secondary-color;
+      font-size: 1em;
+      margin-bottom: 3rem;
+    }
+
+    &__card {
+      @include display-grid($columns: 4, $gap: 0);
+      row-gap: 30px;
+      column-gap: 100px;
+    }
+  }
+}

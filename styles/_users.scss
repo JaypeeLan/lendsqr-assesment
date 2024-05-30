@@ -1,5 +1,5 @@
 .usersPage {
-  h2 {
+  &-title {
     color: $secondary-color;
     font-size: 2.4rem;
     font-weight: 500;
@@ -30,8 +30,5 @@
         line-height: 16.42px;
       }
     }
-  }
-
-  &-table {
   }
 }

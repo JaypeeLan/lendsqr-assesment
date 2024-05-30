@@ -1,53 +1,10 @@
 "use client";
-import useFetchData from "@/hooks/useFetch";
-import { useEffect } from "react";
-
-// Define TypeScript types for the data
-interface PersonalInformation {
-  full_name: string;
-  phone_number: string;
-  email_address: string;
-  bnv: string;
-  gender: string;
-  marital_status: string;
-  children: string;
-  type_of_residence: string;
-  Date_joined: string;
-  Username: string;
-  Organization: string;
-  Status: string;
-}
-
-interface EducationAndEmployment {
-  level_of_education: string;
-  employment_status: string;
-  sector_of_employment: string;
-  Duration_of_employment: string;
-  office_email: string;
-  Monthly_income: string;
-  loan_repayment: string;
-}
-
-interface Socials {
-  Twitter: string;
-  Facebook: string;
-  Instagram: string;
-}
-
-interface Guarantor {
-  full_name: string;
-  Phone_number: string;
-  email_address: string;
-  relationship: string;
-}
-
-export interface Data {
-  _id: string;
-  Personal_information: PersonalInformation;
-  Education_and_Employment: EducationAndEmployment;
-  Socials: Socials;
-  Guarantor: Guarantor[];
-}
+import { CustomButton } from "@/components";
+import { Data } from "@/types/data";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { GeneralTab } from "./tabs";
 
 type ParamsProp = {
   params: {
@@ -56,27 +13,126 @@ type ParamsProp = {
 };
 
 const SingleUser = ({ params }: ParamsProp) => {
-  const { data, isLoading, isError } = useFetchData(
-    "https://run.mocky.io/v3/a7c18c6d-e2f0-4626-a9d9-501915cfd50e"
-  );
+  const tabs = [
+    "General Details",
+    "Documents",
+    "Bank Details",
+    "Loans",
+    "Savings",
+    "App and System",
+  ];
+  const [activeTab, setActiveTab] = useState(0);
+  const [user, setUser] = useState<Data | null>(null);
 
   useEffect(() => {
-    if (data) {
-      console.log(data); // Log the fetched data
-      const singleItem = data.find((item: Data) => item._id === params.id); // Modify the condition as needed
-      console.log(singleItem);
+    const storedUser = localStorage.getItem("selectedUser");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      if (parsedUser._id === params.id) {
+        setUser(parsedUser);
+      }
     }
-  }, [data, params.id]);
+  }, [params.id]);
 
-  if (isLoading) {
+  if (!user) {
     return <div>Loading...</div>;
   }
 
-  if (isError) {
-    return <div>Error fetching data</div>;
-  }
+  return (
+    <>
+      <div className="userDetails">
+        <Link href={"/dashboard/users"} className="userDetails-backBtn">
+          <img src="/icons/back-arrow.svg" alt="back" />
+          <span>Back to users</span>
+        </Link>
+        {/* ---- */}
+        <div className="userDetails-action">
+          <h2 className="userDetails-title">User Details</h2>
 
-  return <div>SingleUser</div>;
+          <div className="userDetails-action__btns">
+            <CustomButton type="button" size="md">
+              Blacklist user
+            </CustomButton>
+            <CustomButton type="button" size="md">
+              Activate user
+            </CustomButton>
+          </div>
+        </div>
+        {/* ---- */}
+
+        <div className="userDetails-profile">
+          <div>
+            {/* photo and id */}
+            <div>
+              <Image
+                src="/imgs/profile-photo.png"
+                alt="profile photo"
+                width={100}
+                height={100}
+              />
+              <div>
+                <p className="userDetails-title">
+                  {user.Personal_information.full_name}
+                </p>
+                <span> LSQFf587g90</span>
+              </div>
+            </div>
+            {/* user tier */}
+            <div>
+              <p>User's tier</p>
+              <div>
+                <img
+                  src="/icons/filled-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+                <img
+                  src="/icons/empty-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+                <img
+                  src="/icons/empty-star.svg"
+                  alt="star"
+                  width={16}
+                  height={16}
+                />
+              </div>
+            </div>
+
+            {/* user acct details */}
+            <div>
+              <p className="userDetails-title">₦200,000.00</p>
+              <p>9912345678/Providus Bank</p>
+            </div>
+          </div>
+
+          {/*  */}
+
+          <div className="userDetails-tabs">
+            {tabs.map((tab, index) => (
+              <div
+                key={index}
+                className={`tab ${index === activeTab ? "active" : ""}`}
+                onClick={() => setActiveTab(index)}
+              >
+                {tab}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* end user profile */}
+      </div>
+
+      {/* user tabs */}
+      <div className="userDetails-info">
+        {activeTab == 0 && <GeneralTab data={user} />}
+      </div>
+    </>
+  );
 };
 
 export default SingleUser;

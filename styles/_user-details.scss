@@ -1,0 +1,180 @@
+.userDetails {
+  &-backBtn {
+    @include display-flex($justify: flex-start);
+    width: max-content;
+    margin-bottom: 2.6rem;
+    span {
+      line-height: 18.77px;
+      margin-top: 3px;
+      margin-left: 1.3rem;
+    }
+  }
+
+  &-title {
+    color: $secondary-color;
+    font-size: 2.4rem;
+    font-weight: 500;
+  }
+
+  &-action {
+    margin-bottom: 4.6rem;
+    @include display-flex;
+
+    &__btns {
+      @include display-flex($justify: flex-start);
+      gap: 2rem;
+
+      > * {
+        width: 170px;
+        letter-spacing: 1px;
+        background-color: transparent;
+        text-transform: uppercase;
+      }
+
+      button:first-child {
+        border: 1px solid $red;
+        color: $red;
+      }
+
+      button:last-child {
+        border: 1px solid $teal-color;
+        color: $teal-color;
+      }
+    }
+  }
+}
+
+.userDetails-profile {
+  background-color: $white;
+  padding: 3rem 3rem 0 3rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid $grey;
+  border-radius: 4px;
+
+  > div:first-child {
+    @include display-flex($align: stretch, $justify: flex-start);
+
+    > div:nth-of-type(1),
+    > div:nth-of-type(2) {
+      @include display-flex($direction: column, $justify: center);
+      position: relative;
+      padding-right: 3rem;
+      margin-right: 3rem;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        height: 70%;
+        border-right: 1px solid $light-grey;
+        transform: translateY(25%);
+      }
+    }
+
+    // photo and id
+    > div:nth-of-type(1) {
+      @include display-flex($justify: flex-start);
+
+      > div {
+        margin-left: 2rem;
+        // user full name
+        p {
+          margin-bottom: 0.8rem;
+        }
+        // user id
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+
+    // user tier
+    > div:nth-of-type(2) {
+      > p {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+      // for the stars icon
+      > div {
+        display: flex;
+        gap: 0.4rem;
+      }
+    }
+
+    // user bank acct details
+    > div:nth-of-type(3) {
+      @include display-flex(
+        $direction: column,
+        $justify: center,
+        $align: flex-start
+      );
+
+      > p:last-child {
+        color: $secondary-color;
+        font-size: 12px;
+        line-height: 14.08px;
+        margin-top: 1.2rem;
+      }
+    }
+  }
+}
+
+.userDetails-tabs {
+  @include display-flex();
+  margin-top: 3.7rem;
+  padding: 0 2.5rem;
+  margin-bottom: -1px;
+}
+
+.tab {
+  padding: 1rem;
+  cursor: pointer;
+  color: #000;
+  position: relative;
+  transition: 0.3 all ease;
+
+  &:not(.active)::before {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    height: 2px;
+    background-color: transparent;
+    width: 0;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  &.active {
+    color: $teal-color;
+
+    &::before {
+      content: "";
+      display: block;
+      margin: 0 auto;
+      height: 2px;
+      background-color: $teal-color;
+      width: 120%;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      margin-top: 1rem;
+      transition: width 0.3s ease, background-color 0.3s ease;
+    }
+  }
+}
+
+.userDetails-info {
+  background-color: $white;
+  padding: 3rem 3rem 0 3rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 1px solid $grey;
+  border-radius: 4px;
+  margin-top: 3rem;
+}
