@@ -9,7 +9,9 @@
 @import "typo";
 @import "links";
 @import "loader";
-@import "authpage";
-@import "dashboard";
 
 @import "../components/index";
+
+@import "authpage";
+@import "dashboard";
+@import "users";

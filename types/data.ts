@@ -1,8 +1,3 @@
-"use client";
-import useFetchData from "@/hooks/useFetch";
-import { useEffect } from "react";
-
-// Define TypeScript types for the data
 interface PersonalInformation {
   full_name: string;
   phone_number: string;
@@ -48,35 +43,3 @@ export interface Data {
   Socials: Socials;
   Guarantor: Guarantor[];
 }
-
-type ParamsProp = {
-  params: {
-    id: string;
-  };
-};
-
-const SingleUser = ({ params }: ParamsProp) => {
-  const { data, isLoading, isError } = useFetchData(
-    "https://run.mocky.io/v3/a7c18c6d-e2f0-4626-a9d9-501915cfd50e"
-  );
-
-  useEffect(() => {
-    if (data) {
-      console.log(data); // Log the fetched data
-      const singleItem = data.find((item: Data) => item._id === params.id); // Modify the condition as needed
-      console.log(singleItem);
-    }
-  }, [data, params.id]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error fetching data</div>;
-  }
-
-  return <div>SingleUser</div>;
-};
-
-export default SingleUser;
