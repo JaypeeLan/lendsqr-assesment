@@ -8,20 +8,13 @@ h1,
     font-size: 30px;
   }
 }
-// h2,
-// .h2 {
-//   font-weight: 400;
-//   font-size: 48px;
-//   // line-height: 42px;
-//   // letter-spacing: -0.02px;
-//   @include respond(tab-port) {
-//     font-size: 32px;
-//   }
-
-//   @include respond(phone) {
-//     font-size: 24px;
-//   }
-// }
+h2,
+.h2 {
+  font-weight: 600;
+  font-size: 24px;
+  // line-height: 42px;
+  // letter-spacing: -0.02px;
+}
 // h3,
 // .h3 {
 //   font-weight: 400;

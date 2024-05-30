@@ -12,6 +12,10 @@ interface PersonalInformation {
   marital_status: string;
   children: string;
   type_of_residence: string;
+  Date_joined: string;
+  Username: string;
+  Organization: string;
+  Status: string;
 }
 
 interface EducationAndEmployment {
@@ -37,7 +41,7 @@ interface Guarantor {
   relationship: string;
 }
 
-interface Data {
+export interface Data {
   _id: string;
   Personal_information: PersonalInformation;
   Education_and_Employment: EducationAndEmployment;
@@ -53,7 +57,7 @@ type ParamsProp = {
 
 const SingleUser = ({ params }: ParamsProp) => {
   const { data, isLoading, isError } = useFetchData(
-    "https://run.mocky.io/v3/22a8b085-4688-4974-8d78-7bcab02119f2"
+    "https://run.mocky.io/v3/a7c18c6d-e2f0-4626-a9d9-501915cfd50e"
   );
 
   useEffect(() => {

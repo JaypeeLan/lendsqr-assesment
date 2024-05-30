@@ -65,6 +65,7 @@ const Sidebar = () => {
       />
       <LinksCard
         name="Dashboard"
+        link=""
         activeLink={pathname === "/dashboard"}
         selectedLink={pathname === "/dashboard" ? "selectedLink" : ""}
       />

@@ -44,7 +44,7 @@ export const BUSINESS = [
   },
   {
     name: "Savings Products",
-    url: "savings-products",
+    url: "saving-products",
   },
 
   {

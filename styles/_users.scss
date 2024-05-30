@@ -1,0 +1,37 @@
+.usersPage {
+  h2 {
+    color: $secondary-color;
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+  }
+
+  &-info {
+    @include display-flex;
+    gap: 2.6rem;
+    margin-bottom: 4rem;
+
+    &__card {
+      background: $white;
+      border: 1px solid rgba(33, 63, 125, 0.06);
+      border-radius: 4px;
+      padding: 20px 0 30px 30px;
+      width: 240px;
+      @include display-flex($direction: column, $align: flex-start);
+      gap: 1.4rem;
+
+      > p:first-of-type {
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      > p:last-of-type {
+        font-weight: 500;
+        line-height: 16.42px;
+      }
+    }
+  }
+
+  &-table {
+  }
+}
