@@ -18,6 +18,11 @@
     padding-bottom: 3rem;
     margin-bottom: 3rem;
 
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
     &__title {
       color: $secondary-color;
       font-size: 1em;
