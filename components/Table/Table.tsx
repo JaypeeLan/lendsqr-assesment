@@ -13,6 +13,7 @@ interface TableProps {
   onIconClick: (headerLabel: string) => void;
   onActionClick: (item: Data) => void;
 }
+
 const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
   const [visiblePopupRow, setVisiblePopupRow] = useState<string | null>(null);
   const [visibleFilterHeader, setVisibleFilterHeader] = useState<string | null>(
@@ -62,6 +63,10 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
   const showFilterPopup = (headerLabel: string) => {
     setVisibleFilterHeader(headerLabel);
     onIconClick(headerLabel);
+  };
+
+  const handleViewDetails = (item: Data) => {
+    localStorage.setItem("selectedUser", JSON.stringify(item));
   };
 
   return (
@@ -117,9 +122,11 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
                   setIsVisible={setVisiblePopupRow}
                 >
                   <div className="popup-content">
-                    <Link href={`/dashboard/users/${item._id}`}>
-                      {" "}
-                      View details{" "}
+                    <Link
+                      href={`/dashboard/users/${item._id}`}
+                      onClick={() => handleViewDetails(item)}
+                    >
+                      View details
                     </Link>
                     <h2>Hello, I'm a Popup!</h2>
                     <p>This is some content inside the popup.</p>
