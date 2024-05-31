@@ -1,11 +1,20 @@
-const nextConfig = {
-  swcMinify: true,
-  experimental: {
-    swcMinify: true,
-  },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
+// next.config.mjs
+export default {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(js|mjs|jsx|ts|tsx)$/,
+      use: {
+        loader: "swc-loader",
+        options: {
+          jsc: {
+            parser: {
+              syntax: "typescript",
+              tsx: true,
+            },
+          },
+        },
+      },
+    });
+    return config;
   },
 };
-
-export default nextConfig;

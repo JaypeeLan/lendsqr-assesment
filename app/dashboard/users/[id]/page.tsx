@@ -30,7 +30,6 @@ const SingleUser = ({ params }: ParamsProp) => {
       const parsedUser = JSON.parse(storedUser);
       if (parsedUser._id === params.id) {
         setUser(parsedUser);
-        console.log(parsedUser);
       }
     }
   }, [params.id]);

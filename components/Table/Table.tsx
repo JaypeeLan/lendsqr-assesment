@@ -15,7 +15,6 @@ interface TableProps {
 }
 
 const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
-  console.log(data);
   const router = useRouter();
   const [visiblePopupRow, setVisiblePopupRow] = useState<string | null>(null);
 
@@ -57,6 +56,22 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
     );
   };
 
+  // Outside of the Table component
+  const getClassForStatus = (status: string) => {
+    switch (status) {
+      case "active":
+        return "active-status";
+      case "inactive":
+        return "inactive-status";
+      case "pending":
+        return "pending-status";
+      case "blacklisted":
+        return "blacklisted-status";
+      default:
+        return "";
+    }
+  };
+
   const showActionMenu = (item: Data) => {
     setVisiblePopupRow(item._id);
     onActionClick(item);
@@ -96,7 +111,16 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
             {data.map((item) => (
               <tr key={item._id}>
                 {headers.map((header, index) => (
-                  <td key={index}>{getHeaderValue(item, header.label)}</td>
+                  <td key={index}>
+                    {" "}
+                    <p
+                      className={`user-status ${getClassForStatus(
+                        getHeaderValue(item, header.label)
+                      )}`}
+                    >
+                      {getHeaderValue(item, header.label)}
+                    </p>
+                  </td>
                 ))}
                 <td className="action-btn">
                   <button onClick={() => showActionMenu(item)}>
