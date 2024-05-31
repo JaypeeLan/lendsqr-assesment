@@ -1,5 +1,6 @@
 "use client";
 import { Table } from "@/components";
+import { formattedNumber } from "@/helpers/transformNumber";
 
 import useFetchData from "@/hooks/useFetch";
 import { Data } from "@/types/data";
@@ -38,7 +39,7 @@ const User = () => {
   ];
 
   const { data, isLoading, isError } = useFetchData(
-    "https://run.mocky.io/v3/a7c18c6d-e2f0-4626-a9d9-501915cfd50e"
+    "https://run.mocky.io/v3/57620364-5244-408f-9ee8-9f11e075e6ae"
   );
 
   if (isLoading) {
@@ -48,7 +49,6 @@ const User = () => {
   if (isError) {
     return <div>Error fetching data</div>;
   }
-  const formattedNumber = (num: number) => new Intl.NumberFormat().format(num);
 
   //--- might not be needed
   const handleIconClick = (headerLabel: string) => {
@@ -80,14 +80,16 @@ const User = () => {
       </div>
 
       {/* ---- */}
-      <div className="usersPage-table">
-        <Table
-          data={data}
-          headers={tableHeaders}
-          onIconClick={handleIconClick}
-          onActionClick={handleActionClick}
-        />
-      </div>
+      {data && (
+        <div className="usersPage-table">
+          <Table
+            data={data}
+            headers={tableHeaders}
+            onIconClick={handleIconClick}
+            onActionClick={handleActionClick}
+          />
+        </div>
+      )}
     </div>
   );
 };

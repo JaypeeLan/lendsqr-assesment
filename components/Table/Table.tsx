@@ -15,6 +15,7 @@ interface TableProps {
 }
 
 const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
+  console.log(data);
   const router = useRouter();
   const [visiblePopupRow, setVisiblePopupRow] = useState<string | null>(null);
 
@@ -22,17 +23,20 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
     const propertyName = headerLabel.replace(/\s+/g, "_").toLowerCase();
 
     const normalizeObject = (obj: any) =>
-      Object.keys(obj).reduce((acc, key) => {
-        acc[key.toLowerCase()] = obj[key];
-        return acc;
-      }, {} as Record<string, any>);
+      obj
+        ? Object.keys(obj).reduce((acc, key) => {
+            acc[key.toLowerCase()] = obj[key];
+            return acc;
+          }, {} as Record<string, any>)
+        : {};
 
-    const normalizedPersonalInfo = normalizeObject(item.Personal_information);
+    const normalizedPersonalInfo = normalizeObject(item.personal_information);
     const normalizedEducationAndEmployment = normalizeObject(
-      item.Education_and_Employment
+      item.education_and_employment
     );
-    const normalizedSocials = normalizeObject(item.Socials);
-    const normalizedGuarantor = normalizeObject(item.Guarantor[0]);
+    const normalizedSocials = normalizeObject(item.socials);
+    const normalizedGuarantor =
+      item.guarantor.length > 0 ? normalizeObject(item.guarantor[0]) : {};
 
     const searchNormalizedObject = (obj: Record<string, any>, key: string) => {
       // First check for exact match
@@ -109,7 +113,7 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
                         <button onClick={() => handleViewDetails(item)}>
                           <img
                             src="/icons/view-details.svg"
-                            alt="activate user"
+                            alt="view details"
                             width={14}
                             height={14}
                           />
@@ -118,7 +122,7 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
                         <button>
                           <img
                             src="/icons/blacklist-user.svg"
-                            alt="activate user"
+                            alt="blacklist user"
                             width={14}
                             height={14}
                           />
@@ -141,33 +145,27 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
             ))}
           </tbody>
         </table>
-        {/* -------------- */}
       </div>
 
-      <>
-        <div className="table-footer">
-          <div className="table-footer__view">
-            <span>Showing</span>
-            <button>
-              <span>100</span>
-              <img src="/icons/down.svg" alt="down" />
-            </button>
-            <span>out of 100</span>
+      <div className="table-footer">
+        <div className="table-footer__view">
+          <span>Showing</span>
+          <button>
+            <span>100</span>
+            <img src="/icons/down.svg" alt="down" />
+          </button>
+          <span>out of 100</span>
+        </div>
+        <div className="table-footer__pagination">
+          <div>
+            <img src="/icons/prev.svg" alt="back" width={14} height={14} />
           </div>
-          {/* pagination */}
-          <div className="table-footer__pagination">
-            <div>
-              <img src="/icons/prev.svg" alt="back" width={14} height={14} />
-            </div>
-            {/* hard coding this for now because the end point is not configured for pagination */}
-            <p>1,2,3</p>
-
-            <div>
-              <img src="/icons/next.svg" alt="forward" width={14} height={14} />
-            </div>
+          <p>1,2,3</p>
+          <div>
+            <img src="/icons/next.svg" alt="forward" width={14} height={14} />
           </div>
         </div>
-      </>
+      </div>
     </>
   );
 };

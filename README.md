@@ -113,4 +113,4 @@ This command will run the linter and report any linting errors in the console.
 
 ### Conclusion
 
-This README provides a guide on how to install, run, test, build for production, and lint the "lendsqr-assesment" project. If you encounter any issues while following this guide, please refer to the project's GitHub repository or reach out to the project maintainer
+This README provides a guide on how to install, run, test, build for production, and lint the "lendsqr-assesment" project.

@@ -1,3 +1,4 @@
+import { formatCurrency } from "@/helpers/transformNumber";
 import { Data } from "@/types/data";
 
 const Item = ({ title, value }: { title: string; value: string }) => {
@@ -14,28 +15,24 @@ const General = ({ data }: { data: Data }) => {
     {
       title: "Personal Information",
       info: [
-        { title: "Full Name", value: data?.Personal_information?.full_name },
+        { title: "Full Name", value: data?.personal_information?.full_name },
         {
           title: "Phone Number",
-          value: data?.Personal_information?.phone_number,
+          value: data?.personal_information?.phone_number,
         },
         {
           title: "Email Address",
-          value: data?.Personal_information?.email_address,
+          value: data?.personal_information?.email_address,
         },
-        { title: "Bvn", value: data?.Personal_information?.bnv },
-        { title: "Gender", value: data?.Personal_information?.gender },
+        { title: "Bvn", value: data?.personal_information?.bvn },
+        { title: "Gender", value: data?.personal_information?.gender },
         {
           title: "Marital status",
-          value: data?.Personal_information?.marital_status,
+          value: data?.personal_information?.marital_status,
         },
         {
           title: "Children",
-          value: data?.Personal_information?.children,
-        },
-        {
-          title: "loan repayment",
-          value: "40,000",
+          value: data?.personal_information?.children,
         },
       ],
     },
@@ -44,31 +41,35 @@ const General = ({ data }: { data: Data }) => {
       info: [
         {
           title: "Level of education",
-          value: data?.Education_and_Employment?.level_of_education,
+          value: data?.education_and_employment?.level_of_education,
         },
         {
           title: "Employment status",
-          value: data?.Education_and_Employment?.employment_status,
+          value: data?.education_and_employment?.employment_status,
         },
         {
           title: "Sector of employment",
-          value: data?.Education_and_Employment?.sector_of_employment,
+          value: data?.education_and_employment?.sector_of_employment,
         },
         {
           title: "Duration of employment",
-          value: data?.Education_and_Employment?.Duration_of_employment,
+          value: data?.education_and_employment?.duration_of_employment,
         },
         {
           title: "Office email",
-          value: data?.Education_and_Employment?.office_email,
+          value: data?.education_and_employment?.office_email,
         },
         {
           title: "Monthly income",
-          value: "₦200,000.00 - ₦400,000.00",
+          value: data?.education_and_employment?.monthly_income
+            ? formatCurrency(data?.education_and_employment?.monthly_income)
+            : "",
         },
         {
           title: "Loan repayment",
-          value: "40,000",
+          value: data?.education_and_employment?.loan_repayment
+            ? formatCurrency(data?.education_and_employment?.loan_repayment)
+            : "",
         },
       ],
     },
@@ -77,23 +78,23 @@ const General = ({ data }: { data: Data }) => {
       info: [
         {
           title: "Twitter",
-          value: data?.Socials.Twitter,
+          value: data?.socials.twitter,
         },
         {
           title: "Instagram",
-          value: data?.Socials.Instagram,
+          value: data?.socials.instagram,
         },
         {
           title: "Facebook",
-          value: data?.Socials.Facebook,
+          value: data?.socials.facebook,
         },
       ],
     },
-    ...data.Guarantor.map((guarantor, index) => ({
+    ...data.guarantor.map((guarantor, index) => ({
       title: `Guarantor ${index + 1}`,
       info: [
         { title: "Full Name", value: guarantor.full_name },
-        { title: "Phone Number", value: guarantor.Phone_number },
+        { title: "Phone Number", value: guarantor.phone_number },
         { title: "Email Address", value: guarantor.email_address },
         { title: "Relationship", value: guarantor.relationship },
       ],

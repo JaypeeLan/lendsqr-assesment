@@ -1,5 +1,6 @@
 "use client";
 import { CustomButton } from "@/components";
+import { formatCurrency } from "@/helpers/transformNumber";
 import { Data } from "@/types/data";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -29,6 +30,7 @@ const SingleUser = ({ params }: ParamsProp) => {
       const parsedUser = JSON.parse(storedUser);
       if (parsedUser._id === params.id) {
         setUser(parsedUser);
+        console.log(parsedUser);
       }
     }
   }, [params.id]);
@@ -72,7 +74,7 @@ const SingleUser = ({ params }: ParamsProp) => {
               />
               <div>
                 <p className="userDetails-title">
-                  {user.Personal_information.full_name}
+                  {user.personal_information.full_name}
                 </p>
                 <span> LSQFf587g90</span>
               </div>
@@ -104,7 +106,9 @@ const SingleUser = ({ params }: ParamsProp) => {
 
             {/* user acct details */}
             <div>
-              <p className="userDetails-title">₦200,000.00</p>
+              <p className="userDetails-title">
+                {formatCurrency(user?.education_and_employment?.loan_repayment)}
+              </p>
               <p>9912345678/Providus Bank</p>
             </div>
           </div>

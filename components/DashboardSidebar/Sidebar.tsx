@@ -55,9 +55,7 @@ const Sidebar = () => {
   const [isUserIdPath, setIsUserIdPath] = useState(false);
 
   useEffect(() => {
-    console.log("Current pathname:", pathname);
     setIsUserIdPath(/^\/dashboard\/users\/[a-zA-Z0-9]+$/.test(pathname));
-    console.log("isUserIdPath:", isUserIdPath);
   }, [pathname]);
 
   return (
@@ -114,6 +112,7 @@ const Sidebar = () => {
         />
       ))}
 
+      {/* for the users details page only */}
       {isUserIdPath && (
         <div className="sidebar-extras">
           <LinksCard
