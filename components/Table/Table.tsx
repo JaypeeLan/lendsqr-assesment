@@ -145,17 +145,26 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
       </div>
 
       <>
-        <div className="pagination-filter">
-          <div>
+        <div className="table-footer">
+          <div className="table-footer__view">
             <span>Showing</span>
-            <button>100</button>
+            <button>
+              <span>100</span>
+              <img src="/icons/down.svg" alt="down" />
+            </button>
             <span>out of 100</span>
           </div>
+          {/* pagination */}
+          <div className="table-footer__pagination">
+            <div>
+              <img src="/icons/prev.svg" alt="back" width={14} height={14} />
+            </div>
+            {/* hard coding this for now because the end point is not configured for pagination */}
+            <p>1,2,3</p>
 
-          <div>
-            <img src="/icons/prev.svg" alt="back" width={14} height={14} />
-            <div>1,2 ,3</div>
-            <img src="/icons/next.svg" alt="forward" />
+            <div>
+              <img src="/icons/next.svg" alt="forward" width={14} height={14} />
+            </div>
           </div>
         </div>
       </>
