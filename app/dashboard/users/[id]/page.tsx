@@ -1,7 +1,6 @@
 "use client";
 import { CustomButton } from "@/components";
 import { Data } from "@/types/data";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GeneralTab } from "./tabs";
@@ -34,8 +33,9 @@ const SingleUser = ({ params }: ParamsProp) => {
     }
   }, [params.id]);
 
+  // handle unlikely err
   if (!user) {
-    return <div>Loading...</div>;
+    return <p>USER NOT FOUND!</p>;
   }
 
   return (
@@ -64,7 +64,7 @@ const SingleUser = ({ params }: ParamsProp) => {
           <div>
             {/* photo and id */}
             <div>
-              <Image
+              <img
                 src="/imgs/profile-photo.png"
                 alt="profile photo"
                 width={100}

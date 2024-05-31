@@ -3,8 +3,6 @@ import { Table } from "@/components";
 
 import useFetchData from "@/hooks/useFetch";
 import { Data } from "@/types/data";
-import Image from "next/image";
-import { useEffect } from "react";
 
 const USERSINFO = [
   {
@@ -43,12 +41,6 @@ const User = () => {
     "https://run.mocky.io/v3/a7c18c6d-e2f0-4626-a9d9-501915cfd50e"
   );
 
-  useEffect(() => {
-    if (data) {
-      console.log(data); // Log the fetched data
-    }
-  }, [data]);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -74,7 +66,7 @@ const User = () => {
       <div className="usersPage-info">
         {USERSINFO.map((info) => (
           <div className="usersPage-info__card" key={info.data}>
-            <Image
+            <img
               src={`/icons/${info.icons}.svg`}
               alt={info.data}
               width={40}

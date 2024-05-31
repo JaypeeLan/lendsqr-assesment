@@ -1,14 +1,17 @@
+.inputBox-label {
+  margin-bottom: 6px;
+  font-weight: 500 !important;
+  line-height: 16.42px;
+  text-transform: none;
+  color: $primary-color;
+  font-size: 1.4rem;
+}
+
 .inputBox {
   width: 100%;
   @include display-flex($justify: center);
   border: 2px solid $grey;
   border-radius: 5px;
-
-  &-label {
-    margin-bottom: 6px;
-    font-weight: 500;
-    line-height: 16.42px;
-  }
 }
 
 .input {

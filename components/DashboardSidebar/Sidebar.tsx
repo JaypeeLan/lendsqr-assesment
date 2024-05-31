@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { BUSINESS, CUSTOMERS, SETTINGS } from "./links";
 
 interface LinksCardProps {
@@ -51,6 +52,13 @@ const LinksCard = ({
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const [isUserIdPath, setIsUserIdPath] = useState(false);
+
+  useEffect(() => {
+    console.log("Current pathname:", pathname);
+    setIsUserIdPath(/^\/dashboard\/users\/[a-zA-Z0-9]+$/.test(pathname));
+    console.log("isUserIdPath:", isUserIdPath);
+  }, [pathname]);
 
   return (
     <div className="sidebar">
@@ -105,6 +113,19 @@ const Sidebar = () => {
           }
         />
       ))}
+
+      {isUserIdPath && (
+        <div className="sidebar-extras">
+          <LinksCard
+            name="Logout"
+            link=""
+            activeLink={pathname === "/logout"}
+            selectedLink={pathname === "/logout" ? "selectedLink" : ""}
+          />
+
+          <p>v1.2.0</p>
+        </div>
+      )}
     </div>
   );
 };

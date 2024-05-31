@@ -29,6 +29,19 @@
     font-size: 12px;
     line-height: 14.08px;
   }
+
+  &-extras {
+    border-top: 1px solid $light-grey;
+    padding-top: 2rem;
+    margin-bottom: 2rem;
+
+    > p {
+      padding-left: 2.9rem;
+      color: $secondary-color;
+      line-height: 14.08px;
+      font-size: 1.4rem;
+    }
+  }
 }
 
 .activeLink {

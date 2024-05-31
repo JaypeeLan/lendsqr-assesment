@@ -36,22 +36,24 @@ const Input = ({
   };
 
   return (
-    <div className={classNames(`inputBox ${variant}-input`, className)}>
-      {label && <span className="inputBox-label">{label}</span>}
-      <input
-        className={classNames(`input`)}
-        type={inputType}
-        placeholder={placeholder}
-      />
-      {rightIcon && (
-        <div
-          className={classNames(`input-img ${iconProps}`)}
-          onClick={handleIconClick}
-        >
-          {rightIcon}
-        </div>
-      )}
-    </div>
+    <>
+      {label && <p className="inputBox-label">{label}</p>}
+      <div className={classNames(`inputBox ${variant}-input`, className)}>
+        <input
+          className={classNames(`input`)}
+          type={inputType}
+          placeholder={placeholder}
+        />
+        {rightIcon && (
+          <div
+            className={classNames(`input-img ${iconProps}`)}
+            onClick={handleIconClick}
+          >
+            {rightIcon}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

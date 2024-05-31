@@ -1,6 +1,6 @@
 "use client";
 import { Data } from "@/types/data";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Popup } from "..";
 
@@ -15,10 +15,8 @@ interface TableProps {
 }
 
 const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
+  const router = useRouter();
   const [visiblePopupRow, setVisiblePopupRow] = useState<string | null>(null);
-  const [visibleFilterHeader, setVisibleFilterHeader] = useState<string | null>(
-    null
-  );
 
   const getHeaderValue = (item: Data, headerLabel: string) => {
     const propertyName = headerLabel.replace(/\s+/g, "_").toLowerCase();
@@ -60,87 +58,117 @@ const Table = ({ data, headers, onIconClick, onActionClick }: TableProps) => {
     onActionClick(item);
   };
 
-  const showFilterPopup = (headerLabel: string) => {
-    setVisibleFilterHeader(headerLabel);
-    onIconClick(headerLabel);
-  };
-
   const handleViewDetails = (item: Data) => {
     localStorage.setItem("selectedUser", JSON.stringify(item));
+    router.push(`/dashboard/users/${item._id}`);
   };
 
   return (
-    <table className="custom-table">
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index} className="action-btn">
-              {header.label}
-              {header.icon && (
-                <span
-                  className="header-icon"
-                  onClick={() => showFilterPopup(header.label)}
-                >
-                  <img src="/icons/filter.svg" alt="filter" />
-                </span>
-              )}
-              {visibleFilterHeader === header.label && (
-                <Popup
-                  className="filter-popup"
-                  closeOnClickOutside={true}
-                  isVisible={true}
-                  setIsVisible={setVisibleFilterHeader}
-                >
-                  <div className="popup-content">
-                    <h2>Filter Options</h2>
-                    <p>Options for filtering {header.label}</p>
-                    <button onClick={() => setVisibleFilterHeader(null)}>
-                      Close
-                    </button>
+    <>
+      <div className="table-container">
+        <table className="custom-table">
+          <thead>
+            <tr>
+              {headers.map((header, index) => (
+                <th key={index} className=" action-btn">
+                  <div className="custom-table__header">
+                    <p> {header.label}</p>
+
+                    {header.icon && (
+                      <img
+                        className="action-btn__icon"
+                        src="/icons/filter.svg"
+                        alt="filter"
+                        width={16}
+                        height={35}
+                      />
+                    )}
                   </div>
-                </Popup>
-              )}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item) => (
-          <tr key={item._id}>
-            {headers.map((header, index) => (
-              <td key={index}>{getHeaderValue(item, header.label)}</td>
-            ))}
-            <td className="action-btn">
-              <button onClick={() => showActionMenu(item)}>
-                <img src="/icons/options.svg" alt="options" />
-              </button>
-              {visiblePopupRow === item._id && (
-                <Popup
-                  className="actionIcon-popup"
-                  closeOnClickOutside={true}
-                  isVisible={true}
-                  setIsVisible={setVisiblePopupRow}
-                >
-                  <div className="popup-content">
-                    <Link
-                      href={`/dashboard/users/${item._id}`}
-                      onClick={() => handleViewDetails(item)}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item) => (
+              <tr key={item._id}>
+                {headers.map((header, index) => (
+                  <td key={index}>{getHeaderValue(item, header.label)}</td>
+                ))}
+                <td className="action-btn">
+                  <button onClick={() => showActionMenu(item)}>
+                    <img src="/icons/options.svg" alt="options" />
+                  </button>
+                  {visiblePopupRow === item._id && (
+                    <Popup
+                      className="actionIcon-popup"
+                      closeOnClickOutside={true}
+                      isVisible={true}
+                      setIsVisible={setVisiblePopupRow}
                     >
-                      View details
-                    </Link>
-                    <h2>Hello, I'm a Popup!</h2>
-                    <p>This is some content inside the popup.</p>
-                    <button onClick={() => setVisiblePopupRow(null)}>
-                      Close
-                    </button>
-                  </div>
-                </Popup>
-              )}
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+                      <div className="options-popup">
+                        <button onClick={() => handleViewDetails(item)}>
+                          <img
+                            src="/icons/view-details.svg"
+                            alt="activate user"
+                            width={14}
+                            height={14}
+                          />
+                          <span>View details</span>
+                        </button>
+                        <button>
+                          <img
+                            src="/icons/blacklist-user.svg"
+                            alt="activate user"
+                            width={14}
+                            height={14}
+                          />
+                          <span>Blacklist User</span>
+                        </button>
+                        <button>
+                          <img
+                            src="/icons/activate-icon.svg"
+                            alt="activate user"
+                            width={14}
+                            height={14}
+                          />
+                          <span>Activate User</span>
+                        </button>
+                      </div>
+                    </Popup>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {/* -------------- */}
+      </div>
+
+      <>
+        <div className="table-footer">
+          <div className="table-footer__view">
+            <span>Showing</span>
+            <button>
+              <span>100</span>
+              <img src="/icons/down.svg" alt="down" />
+            </button>
+            <span>out of 100</span>
+          </div>
+          {/* pagination */}
+          <div className="table-footer__pagination">
+            <div>
+              <img src="/icons/prev.svg" alt="back" width={14} height={14} />
+            </div>
+            {/* hard coding this for now because the end point is not configured for pagination */}
+            <p>1,2,3</p>
+
+            <div>
+              <img src="/icons/next.svg" alt="forward" width={14} height={14} />
+            </div>
+          </div>
+        </div>
+      </>
+    </>
   );
 };
 
