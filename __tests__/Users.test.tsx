@@ -1,4 +1,3 @@
-// __tests__/User.test.tsx
 import User from "@/app/dashboard/users/page";
 import useFetchData from "@/hooks/useFetch";
 import "@testing-library/jest-dom";

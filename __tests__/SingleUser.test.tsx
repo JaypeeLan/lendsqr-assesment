@@ -1,4 +1,3 @@
-// __tests__/SingleUser.test.tsx
 import SingleUser from "@/app/dashboard/users/[id]/page";
 import { render, screen } from "@testing-library/react";
 
@@ -48,30 +47,24 @@ describe("SingleUser Component", () => {
     // Mock localStorage
     localStorage.setItem("selectedUser", JSON.stringify(mockUser));
 
-    // Render the component
     render(<SingleUser params={{ id: "1" }} />);
     // Assertions
     expect(
       screen.getByText("John Doe", { selector: "span" })
     ).toBeInTheDocument();
-
-    // Add more assertions based on your UI elements
   });
 
   it("displays 'USER NOT FOUND!' when user data is not available", () => {
     // Render the component without user data
     render(<SingleUser params={{ id: "2" }} />);
 
-    // Assertions
     expect(screen.getByText("USER NOT FOUND!")).toBeInTheDocument();
   });
 
   it("handles missing user data gracefully", () => {
-    // Render the component without user data
     render(<SingleUser params={{ id: "3" }} />);
 
     // Assertions
     expect(screen.getByText("USER NOT FOUND!")).toBeInTheDocument();
-    // Add more assertions based on your error handling behavior
   });
 });
