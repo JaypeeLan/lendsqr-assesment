@@ -24,7 +24,7 @@
         width: 100%;
         // welcome tex
         h1 {
-          color: $secondary-color;
+          color: $secondary;
           margin-bottom: 1rem;
           line-height: 54.64px;
           letter-spacing: -0.4px;
@@ -42,7 +42,7 @@
             margin-bottom: 6px;
             font-weight: 600;
             letter-spacing: 0.1em;
-            color: $teal-color;
+            color: $teal;
           }
         }
       }
@@ -56,11 +56,15 @@
   height: 36px;
 }
 
+.auth-logo {
+  margin-bottom: 13.9rem;
+}
+
 // show icon for the password field
 .password-icon {
   font-size: 12px;
   font-weight: 600;
-  color: $teal-color;
+  color: $teal;
   text-transform: uppercase;
   margin-right: 15px;
   cursor: pointer;

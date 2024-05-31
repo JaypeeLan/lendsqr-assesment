@@ -11,7 +11,7 @@
 
   > p {
     margin-right: 9px;
-    color: $secondary-color;
+    color: $secondary;
     font-size: 1em;
     opacity: 0.7;
   }
@@ -37,7 +37,7 @@
 
     > p {
       padding-left: 2.9rem;
-      color: $secondary-color;
+      color: $secondary;
       line-height: 14.08px;
       font-size: 1.4rem;
     }
@@ -50,5 +50,5 @@
 
 .selectedLink {
   background-color: $light-teal;
-  border-left: 3px solid $teal-color;
+  border-left: 3px solid $teal;
 }

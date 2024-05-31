@@ -1,5 +1,3 @@
-// layout - header
-
 .dashboard-header {
   position: fixed;
   width: 100%;
@@ -32,7 +30,7 @@
     > span {
       margin-left: 10px;
       margin-right: 4px;
-      color: $secondary-color;
+      color: $secondary;
       font-weight: 500;
     }
   }
@@ -44,7 +42,5 @@
 }
 
 .search-icon {
-  background-color: $teal-color;
-  //   width: 20px;
-  //   height: 20px;
+  background-color: $teal;
 }

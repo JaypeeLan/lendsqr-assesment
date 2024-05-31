@@ -10,8 +10,8 @@
   pointer-events: none;
 
   &-primary {
-    border-top: 2px solid $primary-color;
-    border-right: 2px solid $primary-color;
+    border-top: 2px solid $primary;
+    border-right: 2px solid $primary;
   }
   &-grey {
     border-top: 2px solid $dark-grey;

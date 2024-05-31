@@ -4,7 +4,7 @@ import Image from "next/image";
 const Header = () => {
   return (
     <header className="dashboard-header">
-      <a href="/" className=" auth-logo">
+      <a href="/" className="logo">
         <Image src="/imgs/logo.svg" alt="logo" width={145} height={30} />
       </a>
       <Input

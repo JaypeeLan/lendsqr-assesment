@@ -32,7 +32,7 @@ export default function Auth() {
               type="button"
               size="xs"
               className="full-btn"
-              to="/dashboard"
+              to="/dashboard/users"
             >
               LOG IN
             </CustomButton>

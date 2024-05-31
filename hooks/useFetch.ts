@@ -1,18 +1,16 @@
-import { useEffect } from "react";
 import useSWR from "swr";
 
 const useFetchData = (url: string) => {
   const { data, error } = useSWR(url, async (url) => {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  });
-
-  useEffect(() => {
-    if (error) {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      return data;
+    } catch (error) {
       console.error("Error fetching data:", error);
+      throw error;
     }
-  }, [error]);
+  });
 
   return {
     data,

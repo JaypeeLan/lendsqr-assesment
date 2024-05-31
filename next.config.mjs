@@ -1,7 +1,6 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  swcMinify: true,
   compiler: {
-    // Remove all console logs
     removeConsole: process.env.NODE_ENV === "production",
   },
 };

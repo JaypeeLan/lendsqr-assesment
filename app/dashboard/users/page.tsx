@@ -49,16 +49,16 @@ const User = () => {
     return <div>Error fetching data</div>;
   }
   const formattedNumber = (num: number) => new Intl.NumberFormat().format(num);
+
+  //--- might not be needed
   const handleIconClick = (headerLabel: string) => {
-    // Handle icon click based on header label
-    console.log(`Icon clicked for header: ${headerLabel}`);
+    // console.log(`Icon clicked for header: ${headerLabel}`);
   };
 
   const handleActionClick = (item: Data) => {
-    // You may need to cast `item` to `Data` if you need to access other properties
-
     console.log(`Action clicked for item with ID ${item._id}`);
   };
+  // ---------
 
   return (
     <div className="usersPage">
